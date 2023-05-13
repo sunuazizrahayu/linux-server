@@ -84,6 +84,9 @@ if [[ "$ssl" =~ ^[Yy]$ ]]; then
   if [[ -z "$ssl_domain" ]]; then
     echo "You did not enter any domains. Please try again."
   else
+    echo "Get Docker images"
+    docker pull certbot/dns-cloudflare
+    printf "\n"
     echo "Generate SSL for the following domains: $ssl_domain"
     docker run -it --rm --name certbot \
       -v "/etc/letsencrypt:/etc/letsencrypt" \
