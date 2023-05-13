@@ -74,7 +74,7 @@ printf "\n"
 
 # upgrade package
 cecho -c 'label' "Try to Upgrade..."
-apt upgrade
+apt upgrade -y
 printf "\n"
 
 # remove apache
