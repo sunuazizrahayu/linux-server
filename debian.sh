@@ -4,10 +4,10 @@
 # -c or --color define the color for the print. See the array colors for the available options.
 # -n or --noline directs the system not to print a new line after the content.
 # Last argument is the message to be printed.
-cecho () {
+cecho ()
+{
     declare -A colors;
     colors=(\
-        ['label']='\E[1;33m'\
         ['black']='\E[0;47m'\
         ['red']='\E[0;31m'\
         ['redb']='\E[1;31m'\
@@ -59,7 +59,7 @@ cecho () {
 
 
 ## check for sudo/root
-cecho -c 'label' "Check root access..."
+cecho -c 'yellowb' "Check root access..."
 if ! [ $(id -u) = 0 ]; then
   echo "This script must run with sudo, try again..."
   exit 1
@@ -68,17 +68,17 @@ printf "\n"
 
 
 # update package list
-cecho -c 'label' "Updating package index..."
+cecho -c 'yellowb' "Updating package index..."
 apt update
 printf "\n"
 
 # upgrade package
-cecho -c 'label' "Try to Upgrade..."
+cecho -c 'yellowb' "Try to Upgrade..."
 apt upgrade -y
 printf "\n"
 
 # remove apache
-cecho -c 'redb' "Remove default apache..."
+cecho -c 'yellowb' "Remove default apache..."
 apt purge --auto-remove apache* -y
 printf "\n"
 
@@ -110,6 +110,7 @@ apt remove docker docker-engine docker.io containerd runc -y
 # Add Docker’s official GPG key:
 cecho -c 'green' "Add Docker GPG key..."
 install -m 0755 -d /etc/apt/keyrings
+rm -f /etc/apt/keyrings/docker.gpg
 curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 chmod a+r /etc/apt/keyrings/docker.gpg
 
@@ -130,7 +131,7 @@ apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-co
 cecho -c 'green' "Set autorun Docker..."
 systemctl start docker
 systemctl enable docker
-cecho -c 'yellowb' "Install Docker finish..."
+cecho -c 'yellowb' "Install Docker done."
 printf "\n"
 
 # Install Speedtest
