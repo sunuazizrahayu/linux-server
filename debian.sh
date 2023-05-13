@@ -96,13 +96,30 @@ printf "\n"
 ##################################################
 cecho -c 'yellowb' "Install NGINX web server..."
 # Install
+cecho -c 'green' "Install nginx"
 apt install nginx -y
+
+cecho -c 'green' "remove default config dir"
+rm -rf /etc/nginx/sites-available/
+rm -rf /etc/nginx/sites-enabled/
+
+cecho -c 'green' "create config dir"
+mkdir -p /etc/nginx/conf.d/
+cecho -c 'green' "get default nginx config"
+wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/nginx.conf -O /etc/nginx/nginx.conf
+cecho -c 'green' "get default server config"
+wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/conf.d/default.conf -O /etc/nginx/conf.d/default.conf
+
+cecho -c 'green' "prepare public html"
+rm -rf /var/www/html/
+mkdir -p /var/www/html/
+wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/www/index.html -O /var/www/html/index.html
 printf "\n"
 
 
-cecho -c 'yellowb' "Install Docker..."
 # INSTALL DOCKER: https://docs.docker.com/engine/install/debian/
 ##################################################
+cecho -c 'yellowb' "Install Docker..."
 # remove old version
 cecho -c 'green' "Remove old Docker..."
 apt remove docker docker-engine docker.io containerd runc -y
