@@ -88,7 +88,8 @@ printf "\n"
 cecho -c 'yellowb' "Install any required packages..."
 apt install \
   nano curl wget bash-completion lsb-release \
-  ca-certificates gnupg -y
+  ca-certificates gnupg \
+  htop -y
 printf "\n"
 
 
@@ -159,3 +160,8 @@ printf "\n"
 cecho -c 'yellowb' "Install Speedtest..."
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
 apt install speedtest -y
+
+# Generate SSL
+cecho -c 'yellowb' "Generate SSL with cloudflare..."
+wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/ssl_cloudflare.sh -O ssl.sh
+bash ssl.sh
