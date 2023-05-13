@@ -48,5 +48,9 @@ if [ ! -f "$secrets_file" ]; then
   exit 1
 fi
 
+# Update Config Permission
+chmod 0700 $(dirname "$secrets_file")
+chmod 0400 $secrets_file
+
 
 echo "next skrip to generate SSL"
