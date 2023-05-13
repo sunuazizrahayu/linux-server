@@ -114,6 +114,9 @@ cecho -c 'green' "prepare public html"
 rm -rf /var/www/html/
 mkdir -p /var/www/html/
 wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/www/index.html -O /var/www/html/index.html
+
+cecho -c 'green' "reload config nginx"
+nginx -s reload
 printf "\n"
 
 
