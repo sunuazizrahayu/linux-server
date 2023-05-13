@@ -53,4 +53,45 @@ chmod 0700 $(dirname "$secrets_file")
 chmod 0400 $secrets_file
 
 
-echo "next skrip to generate SSL"
+# Generate SSL
+# Prompt user if they want to generate SSL
+read -p "Do you want to generate an SSL? (y/N): " ssl
+
+# If user selects yes (y), prompt for SSL domain
+if [[ "$ssl" =~ ^[Yy]$ ]]; then
+  # Prompt user for SSL domain
+  echo "Enter domains (press Enter without typing to finish):"
+  
+  # Initialize ssl_domain variable
+  ssl_domain=""
+  
+  # Loop to prompt user for SSL domain until they finish
+  while read -p "> " line
+  do
+    # Stop the loop if user does not enter any domain
+    if [[ -z "$line" ]]; then
+      break
+    fi
+    
+    # Append domain to ssl_domain variable with comma separator
+    ssl_domain="$ssl_domain,$line"
+  done
+  
+  # Remove the comma at the beginning of the ssl_domain variable
+  ssl_domain=${ssl_domain#","}
+  
+  # Print user input for SSL domain to screen
+  if [[ -z "$ssl_domain" ]]; then
+    echo "You did not enter any domains. Please try again."
+  else
+    echo "Generate SSL for the following domains: $ssl_domain"
+    docker run -it --rm --name certbot \
+      -v "/etc/letsencrypt:/etc/letsencrypt" \
+      -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+      -v "/root/.secrets/cloudflare.ini:/root/.secrets/cloudflare.ini" \
+      certbot/dns-cloudflare certonly --dns-cloudflare --dns-cloudflare-credentials /root/.secrets/cloudflare.ini -d $ssl_domain --preferred-challenges dns-01
+  fi
+else
+  # Print message that SSL will not be generated
+  echo "You chose not to generate an SSL."
+fi
