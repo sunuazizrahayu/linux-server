@@ -8,7 +8,7 @@ fi
 
 
 # Set the path of the secrets file to a variable
-secrets_file="$HOME/.secrets/cloudflare.ini"
+secrets_file="/root/.secrets/cloudflare.ini"
 
 # Check if the secrets file exists and prompt for overwrite if it does
 if [ -f "$secrets_file" ]; then
@@ -91,8 +91,8 @@ if [[ "$ssl" =~ ^[Yy]$ ]]; then
     docker run -it --rm --name certbot \
       -v "/etc/letsencrypt:/etc/letsencrypt" \
       -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
-      -v "/root/.secrets/cloudflare.ini:/root/.secrets/cloudflare.ini" \
-      certbot/dns-cloudflare certonly --dns-cloudflare --dns-cloudflare-credentials /root/.secrets/cloudflare.ini -d $ssl_domain --preferred-challenges dns-01
+      -v "$secrets_file:$secrets_file" \
+      certbot/dns-cloudflare certonly --dns-cloudflare --dns-cloudflare-credentials $secrets_file -d $ssl_domain --preferred-challenges dns-01
   fi
 else
   # Print message that SSL will not be generated
