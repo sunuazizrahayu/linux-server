@@ -12,7 +12,7 @@ secrets_file="/root/.secrets/cloudflare.ini"
 
 # Check if the secrets file exists and prompt for overwrite if it does
 if [ -f "$secrets_file" ]; then
-  read -p "Secrets file $secrets_file exists. Do you want to overwrite the contents of the file? (y/N) " confirm_overwrite
+  read -p "Secrets file $secrets_file exists. Do you want to overwrite the contents of the file? (y/N): " confirm_overwrite
   if [ "${confirm_overwrite,,}" != "y" ]; then
     echo "Skipping overwrite of $secrets_file."
   fi
@@ -84,9 +84,6 @@ if [[ "$ssl" =~ ^[Yy]$ ]]; then
   if [[ -z "$ssl_domain" ]]; then
     echo "You did not enter any domains. Please try again."
   else
-    echo "Get Docker images"
-    docker pull certbot/dns-cloudflare
-    printf "\n"
     echo "Generate SSL for the following domains: $ssl_domain"
     docker run -it --rm --name certbot \
       -v "/etc/letsencrypt:/etc/letsencrypt" \
