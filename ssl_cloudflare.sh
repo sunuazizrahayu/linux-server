@@ -82,7 +82,7 @@ if [[ "$ssl" =~ ^[Yy]$ ]]; then
 #   ssl_domain=${ssl_domain#","}
 
   # v2
-  echo "Enter domains, use comma for multiple domains (ex: domain1.com,domain2.com)":
+  echo "Enter domains, use comma for multiple domains (ex: domain1.com,domain2.com):"
   read -p "> " ssl_domain_string
   ssl_domain=$(echo "$ssl_domain_string" | sed 's/, */,/g')
   
