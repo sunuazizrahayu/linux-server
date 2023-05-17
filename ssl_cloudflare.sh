@@ -97,6 +97,20 @@ if [[ "$ssl" =~ ^[Yy]$ ]]; then
       -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
       -v "$secrets_file:$secrets_file" \
       certbot/dns-cloudflare certonly --dns-cloudflare --dns-cloudflare-credentials $secrets_file -d $ssl_domain --preferred-challenges dns-01
+    
+    
+    echo "Create crontab for auto-renewal SSL"
+    # Crontab entry to add
+    crontab_entry="0 1 * */3 *  /usr/bin/docker run -it --rm --name certbot -v \"/etc/letsencrypt:/etc/letsencrypt\" -v \"/var/lib/letsencrypt:/var/lib/letsencrypt\" -v \"/root/.secrets/cloudflare.ini:/root/.secrets/cloudflare.ini\" certbot/dns-cloudflare renew"
+    # Check if the new entry already exists in the crontab
+    if crontab -l | grep -Fxq "$crontab_entry"; then
+        echo "Crontab for auto-renewal SSL already exists."
+    else
+        # Add the new entry to the crontab
+        (crontab -l 2>/dev/null; echo "$crontab_entry") | crontab -
+        echo "Crontab for auto-renewal SSL added successfully."
+    fi
+    
   fi
 else
   # Print message that SSL will not be generated
