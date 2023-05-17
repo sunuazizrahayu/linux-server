@@ -59,7 +59,7 @@ read -p "Do you want to generate an SSL? [y/N] " ssl
 
 # If user selects yes (y), prompt for SSL domain
 if [[ "$ssl" =~ ^[Yy]$ ]]; then
-    v1
+#   # v1
 #   # Prompt user for SSL domain
 #   echo "Enter domains (press Enter without typing to finish):"
   
@@ -82,8 +82,10 @@ if [[ "$ssl" =~ ^[Yy]$ ]]; then
 #   ssl_domain=${ssl_domain#","}
 
   # v2
-  echo ""Enter domains, use comma or space for multiple domains:
-  read -p "> " ssl_domain
+  echo ""Enter domains, use comma for multiple domains (ex: domain1.com,domain2.com):
+  read -p "> " ssl_domain_string
+  ssl_domain=$(echo "$ssl_domain_string" | sed 's/, */,/g')
+  
   
   # Print user input for SSL domain to screen
   if [[ -z "$ssl_domain" ]]; then
