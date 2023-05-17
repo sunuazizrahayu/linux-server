@@ -12,7 +12,7 @@ secrets_file="/root/.secrets/cloudflare.ini"
 
 # Check if the secrets file exists and prompt for overwrite if it does
 if [ -f "$secrets_file" ]; then
-  read -p "Secrets file $secrets_file exists. Do you want to overwrite the contents of the file? (y/N): " confirm_overwrite
+  read -p "Secrets file $secrets_file exists. Do you want to overwrite the contents of the file? [y/N] " confirm_overwrite
   if [ "${confirm_overwrite,,}" != "y" ]; then
     echo "Skipping overwrite of $secrets_file."
   fi
@@ -55,30 +55,35 @@ chmod 0400 $secrets_file
 
 # Generate SSL
 # Prompt user if they want to generate SSL
-read -p "Do you want to generate an SSL? (y/N): " ssl
+read -p "Do you want to generate an SSL? [y/N] " ssl
 
 # If user selects yes (y), prompt for SSL domain
 if [[ "$ssl" =~ ^[Yy]$ ]]; then
-  # Prompt user for SSL domain
-  echo "Enter domains (press Enter without typing to finish):"
+    v1
+#   # Prompt user for SSL domain
+#   echo "Enter domains (press Enter without typing to finish):"
   
-  # Initialize ssl_domain variable
-  ssl_domain=""
+#   # Initialize ssl_domain variable
+#   ssl_domain=""
   
-  # Loop to prompt user for SSL domain until they finish
-  while read -p "> " line
-  do
-    # Stop the loop if user does not enter any domain
-    if [[ -z "$line" ]]; then
-      break
-    fi
+#   # Loop to prompt user for SSL domain until they finish
+#   while read -p "> " line
+#   do
+#     # Stop the loop if user does not enter any domain
+#     if [[ -z "$line" ]]; then
+#       break
+#     fi
     
-    # Append domain to ssl_domain variable with comma separator
-    ssl_domain="$ssl_domain,$line"
-  done
+#     # Append domain to ssl_domain variable with comma separator
+#     ssl_domain="$ssl_domain,$line"
+#   done
   
-  # Remove the comma at the beginning of the ssl_domain variable
-  ssl_domain=${ssl_domain#","}
+#   # Remove the comma at the beginning of the ssl_domain variable
+#   ssl_domain=${ssl_domain#","}
+
+  # v2
+  echo ""Enter domains, use comma or space for multiple domains:
+  read -p "> " ssl_domain
   
   # Print user input for SSL domain to screen
   if [[ -z "$ssl_domain" ]]; then
