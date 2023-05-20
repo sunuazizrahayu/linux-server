@@ -106,9 +106,9 @@ rm /var/www/html/*
 wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/www/index.html -O /var/www/html/index.html
 
 cecho -c 'green' "create new config dir"
-mkdir -p /etc/nginx/conf.d/
+mkdir -p /etc/nginx/sites.conf.d/
 cecho -c 'green' "set default server config on new dir"
-wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/conf.d/default.conf -O /etc/nginx/conf.d/default.conf
+wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/default.conf -O /etc/nginx/sites.conf.d/default.conf
 cecho -c 'green' "set nginx config with new server config dir"
 wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/nginx.conf -O /etc/nginx/nginx.conf
 
