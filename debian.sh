@@ -150,22 +150,27 @@ cecho -c 'green' "Update docker package..."
 apt update
 cecho -c 'green' "Installing Docker..."
 apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin -y
+printf "\n"
 
 # Autorun docker
 cecho -c 'green' "Set autorun Docker..."
 systemctl start docker
 systemctl enable docker
-cecho -c 'yellowb' "Install Docker done."
 printf "\n"
 
 # Create docker network
+cecho -c 'green' "Create Docker Network..."
 docker network create localhost || true
+
+cecho -c 'yellowb' "Install Docker done."
+printf "\n"
 
 
 # Install Speedtest
 cecho -c 'yellowb' "Install Speedtest..."
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
 apt install speedtest -y
+printf "\n"
 
 # Generate SSL
 cecho -c 'yellowb' "Generate SSL with cloudflare..."
