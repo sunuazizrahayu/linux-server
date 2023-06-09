@@ -158,6 +158,10 @@ systemctl enable docker
 cecho -c 'yellowb' "Install Docker done."
 printf "\n"
 
+# Create docker network
+docker network create localhost || true
+
+
 # Install Speedtest
 cecho -c 'yellowb' "Install Speedtest..."
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
