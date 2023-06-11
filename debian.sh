@@ -172,6 +172,11 @@ curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.
 apt install speedtest -y
 printf "\n"
 
+# Get warp script
+cecho -c 'yellowb' "Get script to install WARP..."
+wget https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh
+printf "\n"
+
 # Generate SSL
 cecho -c 'yellowb' "Generate SSL with cloudflare..."
 wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/ssl_cloudflare.sh -O ssl.sh
