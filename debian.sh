@@ -165,12 +165,6 @@ docker network create localhost || true
 cecho -c 'yellowb' "Install Docker done."
 printf "\n"
 
-# Get Gitlab Runner
-cecho -c 'yellowb' "Gitlab Runner with Docker..."
-wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/gitlab-runner.sh
-bash gitlab-runner.sh
-printf "\n"
-
 # Install Speedtest
 cecho -c 'yellowb' "Install Speedtest..."
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
@@ -180,6 +174,11 @@ printf "\n"
 # Get warp script
 cecho -c 'yellowb' "Get script to install WARP..."
 wget https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh
+printf "\n"
+
+# Get Gitlab Runner
+cecho -c 'yellowb' "Gitlab Runner with Docker..."
+wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/gitlab-runner.sh
 printf "\n"
 
 # Generate SSL
