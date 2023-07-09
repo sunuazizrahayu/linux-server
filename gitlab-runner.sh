@@ -14,5 +14,8 @@ gitlab-runner register -n \
   --registration-token $REGISTRATION_TOKEN \
   --executor docker \
   --docker-image "alpine" \
-  --docker-privileged
+  --docker-privileged \
+  --docker-volumes "/var/run/docker.sock:/var/run/docker.sock"
 
+# update config
+docker restart gitlab-runner
