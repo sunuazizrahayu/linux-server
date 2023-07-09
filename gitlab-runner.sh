@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# input
+read -p "Enter your gitlab-runner token: " REGISTRATION_TOKEN
+
 # install gitlab-runner
 docker run -d --name gitlab-runner --restart always \
   -v /srv/gitlab-runner/config:/etc/gitlab-runner \
@@ -7,7 +10,6 @@ docker run -d --name gitlab-runner --restart always \
   gitlab/gitlab-runner:latest
 
 # register token
-read -p "Enter your gitlab-runner token: " REGISTRATION_TOKEN
 docker exec -it gitlab-runner \
 gitlab-runner register -n \
   --url https://gitlab.com/ \
