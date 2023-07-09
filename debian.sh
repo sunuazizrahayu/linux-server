@@ -165,6 +165,11 @@ docker network create localhost || true
 cecho -c 'yellowb' "Install Docker done."
 printf "\n"
 
+# Get Gitlab Runner
+cecho -c 'yellowb' "Gitlab Runner with Docker..."
+wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/gitlab-runner.sh
+bash gitlab-runner.sh
+printf "\n"
 
 # Install Speedtest
 cecho -c 'yellowb' "Install Speedtest..."
