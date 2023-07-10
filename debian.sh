@@ -171,7 +171,12 @@ curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.
 apt install speedtest -y
 printf "\n"
 
-# Get warp script
+# Get OpenVPN Install
+cecho -c 'yellowb' "Get script to install OpenVPN..."
+wget https://git.io/vpn -O openvpn-install.sh
+printf "\n"
+
+# Get WARP script
 cecho -c 'yellowb' "Get script to install WARP..."
 wget https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh
 printf "\n"
