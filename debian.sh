@@ -66,6 +66,10 @@ if ! [ $(id -u) = 0 ]; then
 fi
 printf "\n"
 
+# remove apache
+cecho -c 'yellowb' "Remove default apache..."
+apt purge --auto-remove apache* -y
+printf "\n"
 
 # update package list
 cecho -c 'yellowb' "Updating package index..."
@@ -75,11 +79,6 @@ printf "\n"
 # upgrade package
 cecho -c 'yellowb' "Try to Upgrade..."
 apt upgrade -y
-printf "\n"
-
-# remove apache
-cecho -c 'yellowb' "Remove default apache..."
-apt purge --auto-remove apache* -y
 printf "\n"
 
 
