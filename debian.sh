@@ -66,6 +66,9 @@ if ! [ $(id -u) = 0 ]; then
 fi
 printf "\n"
 
+# change to /tmp dir
+cd /tmp
+
 # remove apache
 cecho -c 'yellowb' "Remove default apache..."
 apt purge --auto-remove apache* -y
