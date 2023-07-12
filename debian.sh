@@ -164,6 +164,11 @@ docker network create localhost || true
 cecho -c 'yellowb' "Install Docker done."
 printf "\n"
 
+# Get WARP script
+cecho -c 'yellowb' "Get script to install WARP..."
+wget https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh
+printf "\n"
+
 # Install Speedtest
 cecho -c 'yellowb' "Install Speedtest..."
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
@@ -173,11 +178,6 @@ printf "\n"
 # Get OpenVPN Install
 cecho -c 'yellowb' "Get script to install OpenVPN..."
 wget https://git.io/vpn -O openvpn-install.sh
-printf "\n"
-
-# Get WARP script
-cecho -c 'yellowb' "Get script to install WARP..."
-wget https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh
 printf "\n"
 
 # Get Gitlab Runner
