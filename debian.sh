@@ -67,7 +67,7 @@ fi
 printf "\n"
 
 # change to /tmp dir
-cd /tmp
+#cd /tmp
 
 # remove apache
 cecho -c 'yellowb' "Remove default apache..."
