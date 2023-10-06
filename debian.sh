@@ -169,7 +169,7 @@ printf "\n"
 
 # Get WARP script
 cecho -c 'yellowb' "Get script to install WARP..."
-wget https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh
+wget https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh
 printf "\n"
 
 # Install Speedtest
