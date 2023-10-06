@@ -66,9 +66,6 @@ if ! [ $(id -u) = 0 ]; then
 fi
 printf "\n"
 
-# change to /tmp dir
-#cd /tmp
-
 # remove apache
 cecho -c 'yellowb' "Remove default apache..."
 apt purge --auto-remove apache* -y
@@ -80,9 +77,9 @@ apt update
 printf "\n"
 
 # upgrade package
-cecho -c 'yellowb' "Try to Upgrade..."
-apt upgrade -y
-printf "\n"
+# cecho -c 'yellowb' "Try to Upgrade..."
+# apt upgrade -y
+# printf "\n"
 
 
 # PREPARATION & REQUIREMENTS
@@ -131,19 +128,18 @@ printf "\n"
 cecho -c 'yellowb' "Install Docker..."
 # remove old version
 cecho -c 'green' "Remove old Docker..."
-apt remove docker docker-engine docker.io containerd runc -y
+#apt remove docker docker-engine docker.io containerd runc -y
 
 # Add Docker’s official GPG key:
 cecho -c 'green' "Add Docker GPG key..."
-install -m 0755 -d /etc/apt/keyrings
-rm -f /etc/apt/keyrings/docker.gpg
-curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-chmod a+r /etc/apt/keyrings/docker.gpg
+rm /etc/apt/trusted.gpg.d/docker.gpg
+rm /etc/apt/sources.list.d/docker.list
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg  > /dev/null
 
 # Setup Docker Repo
 cecho -c 'green' "Setup Docker Repository..."
 echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/debian \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
 
