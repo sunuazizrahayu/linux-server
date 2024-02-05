@@ -122,3 +122,16 @@ nginx -t
 nginx -s reload
 printf "\n"
 
+
+# INSTALL DOCKER
+##################################################
+cecho -c 'yellowb' "Install Docker..."
+curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+apt install docker-compose -y
+printf "\n"
+
+# Autorun docker
+cecho -c 'green' "Set autorun Docker..."
+systemctl start docker
+systemctl enable docker
+printf "\n"
