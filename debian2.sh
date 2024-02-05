@@ -130,8 +130,13 @@ curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
 apt install docker-compose -y
 printf "\n"
 
-# Autorun docker
+# Autorun Docker
 cecho -c 'green' "Set autorun Docker..."
 systemctl start docker
 systemctl enable docker
+printf "\n"
+
+# Clean Docker Installer
+cecho -c 'green' "Cleaning Docker Install..."
+sudo apt autoremove -y
 printf "\n"
