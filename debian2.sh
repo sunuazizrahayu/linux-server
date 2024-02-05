@@ -86,7 +86,9 @@ printf "\n"
 ##################################################
 cecho -c 'yellowb' "Install any required packages..."
 apt install \
-  nano curl wget bash-completion htop -y
+  nano curl wget bash-completion \
+  \
+  htop -y
 printf "\n"
 
 
