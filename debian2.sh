@@ -68,24 +68,24 @@ printf "\n"
 
 # remove apache
 cecho -c 'yellowb' "Remove default apache..."
-apt purge --auto-remove apache* -y
+sudo apt purge --auto-remove apache* -y
 printf "\n"
 
 # update package list
 cecho -c 'yellowb' "Updating package index..."
-apt update
+sudo apt update
 printf "\n"
 
 # upgrade package
 # cecho -c 'yellowb' "Try to Upgrade..."
-# apt upgrade -y
+# sudo apt upgrade -y
 # printf "\n"
 
 
 # PREPARATION & REQUIREMENTS
 ##################################################
 cecho -c 'yellowb' "Install any required packages..."
-apt install \
+sudo apt install \
   nano curl wget bash-completion \
   \
   htop -y
@@ -97,29 +97,29 @@ printf "\n"
 cecho -c 'yellowb' "Install NGINX web server..."
 # Install
 cecho -c 'green' "Install nginx"
-apt install nginx -y
+sudo apt install nginx -y
 
 cecho -c 'green' "update public html"
-mkdir -p /var/www/html/
-rm /var/www/html/*
-wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/www/index.html -O /var/www/html/index.html
+sudo mkdir -p /var/www/html/
+sudo rm /var/www/html/*
+sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/www/index.html -O /var/www/html/index.html
 
 cecho -c 'green' "create new config dir"
-mkdir -p /etc/nginx/sites.conf.d/
+sudo mkdir -p /etc/nginx/sites.conf.d/
 cecho -c 'green' "set default server config on new dir"
-wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/default.conf -O /etc/nginx/sites.conf.d/default.conf
-wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/vhost.conf.example -O /etc/nginx/sites.conf.d/vhost.conf.example
+sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/default.conf -O /etc/nginx/sites.conf.d/default.conf
+sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/vhost.conf.example -O /etc/nginx/sites.conf.d/vhost.conf.example
 cecho -c 'green' "set nginx config with new server config dir"
-wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/nginx.conf -O /etc/nginx/nginx.conf
+sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/nginx.conf -O /etc/nginx/nginx.conf
 
 cecho -c 'green' "remove default config dir"
-rm -rf /etc/nginx/conf.d/
-rm -rf /etc/nginx/sites-available/
-rm -rf /etc/nginx/sites-enabled/
+sudo rm -rf /etc/nginx/conf.d/
+sudo rm -rf /etc/nginx/sites-available/
+sudo rm -rf /etc/nginx/sites-enabled/
 
 cecho -c 'green' "reload config nginx"
-nginx -t
-nginx -s reload
+sudo nginx -t
+sudo nginx -s reload
 printf "\n"
 
 
@@ -127,13 +127,13 @@ printf "\n"
 ##################################################
 cecho -c 'yellowb' "Install Docker..."
 curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
-apt install docker-compose -y
+sudo apt install docker-compose -y
 printf "\n"
 
 # Autorun Docker
 cecho -c 'green' "Set autorun Docker..."
-systemctl start docker
-systemctl enable docker
+sudo systemctl start docker
+sudo systemctl enable docker
 printf "\n"
 
 # Clean Docker Installer
