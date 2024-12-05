@@ -113,7 +113,6 @@ cecho -c 'green' "set nginx config with new server config dir"
 wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/nginx.conf -O /etc/nginx/nginx.conf
 
 cecho -c 'green' "remove default config dir"
-rm -rf /etc/nginx/conf.d/
 rm -rf /etc/nginx/sites-available/
 rm -rf /etc/nginx/sites-enabled/
 
