@@ -105,7 +105,7 @@ sudo rm /var/www/html/*
 sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/www/index.html -O /var/www/html/index.html
 
 cecho -c 'green' "create new config dir"
-sudo mkdir -p /etc/nginx/sites.conf.d/
+sudo mkdir -p /etc/nginx/conf.d/
 cecho -c 'green' "set default server config on new dir"
 sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/default.conf -O /etc/nginx/conf.d/default.conf
 sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/vhost.conf.example -O /etc/nginx/conf.d/vhost.conf.example
