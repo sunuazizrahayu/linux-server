@@ -106,9 +106,11 @@ sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/ngi
 
 cecho -c 'green' "create new config dir"
 sudo mkdir -p /etc/nginx/conf.d/
+
 cecho -c 'green' "set default server config on new dir"
 sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/default.conf -O /etc/nginx/conf.d/default.conf
 sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/sites.conf.d/vhost.conf.example -O /etc/nginx/conf.d/vhost.conf.example
+
 cecho -c 'green' "set nginx config with new server config dir"
 sudo wget https://raw.githubusercontent.com/sunuazizrahayu/linux-server/main/nginx/nginx.conf -O /etc/nginx/nginx.conf
 
